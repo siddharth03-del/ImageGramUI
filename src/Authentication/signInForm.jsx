@@ -56,7 +56,7 @@ const SignInForm = () => {
       <button type="submit" className='btn mt-10'>Sign In</button>
       </form>
       <div className='mt-3'>
-        <h1 className=''>Don&#39;t have an account? <a href='signup' className='link link-info'>Sign Up</a></h1>
+        <h1 className=''>Don&#39;t have an account? <a className='link link-info' onClick={()=>{navigate('/signup')}}>Sign Up</a></h1>
       </div>
       </div>
     </div>
