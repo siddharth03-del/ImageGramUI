@@ -1,7 +1,9 @@
 import axios_instance from "../Helpers/axiosInstance"
-export const fetchLikeOnPost = async(token, post_id)=>{
+import { fetchCurrentUser, getToken } from "../Helpers/storeToken";
+export const fetchLikeOnPost = async( post_id)=>{
     try{
-        console.log(token);
+        const currentUser = fetchCurrentUser();
+        const token = getToken(currentUser);
         const headers = {"x-access-token" : token};
         const params = {post : post_id};
         const response = await axios_instance.get('/like/countlikepost', {params,headers});

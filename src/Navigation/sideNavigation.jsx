@@ -18,8 +18,13 @@ import {
     PlusIcon
   } from "@heroicons/react/24/solid";
 import { Outlet } from "react-router-dom";
+import { useContext, useState } from "react";
+import {MyContext} from '../context.js'
+import LogoutDialog from "../Logout/logout.jsx";
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/16/solid";
   export function DefaultSidebar() {
     const navigate = useNavigate();
+    const [openLogout, setLogout] = useState(false);
     return (
       <>
       <Card className="h-[calc(100vh-6rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
@@ -35,11 +40,12 @@ import { Outlet } from "react-router-dom";
             </ListItemPrefix>
             Posts
           </ListItem>
-          <ListItem>
+          <ListItem onClick={()=>{navigate("/homepage/explore")}}>
             <ListItemPrefix>
-              <ShoppingBagIcon className="h-5 w-5" />
+              <MagnifyingGlassCircleIcon className="h-5 w-5"/>
+              {/* <ShoppingBagIcon className="h-5 w-5" /> */}
             </ListItemPrefix>
-            Explore
+            Search
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -68,12 +74,15 @@ import { Outlet } from "react-router-dom";
             </ListItemPrefix>
             Settings
           </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <PowerIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Log Out
-          </ListItem>
+          <MyContext.Provider value={{openLogout, setLogout}}>
+            <ListItem onClick={()=>{setLogout(!openLogout)}}>
+              <ListItemPrefix>
+                <PowerIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Log Out
+              <LogoutDialog/>
+            </ListItem>
+          </MyContext.Provider>
         </List>
       </Card>
       <Outlet/>

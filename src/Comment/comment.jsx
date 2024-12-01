@@ -2,21 +2,27 @@ import { useState , useEffect} from "react";
 import { showComments } from "../Services/showComments";
 import CommentStructure from "./commentStructure";
 import CreateComment from "./createComment";
-function Comment({content_id, type}){
+import { MyContext } from "../context";
+import { useContext } from "react";
+import { useQuery } from "react-query";
+function Comment({content_id}){
     const [comments, setComments] = useState(null);
     const [rerender, setrender] = useState(false);
-    useEffect(()=>{
-        async function showCommentsHelper(content_id, type){
-            const response = await showComments(content_id, type);
-            console.log(content_id);
-            console.log(response);
-            setComments(response);
-        }
-        showCommentsHelper(content_id, type);
-    },[rerender]);
+    const [comment, setComment] = useState(null);
+    const [commentType, setCommentType] = useState("post");
+    const [createCommentId, setCreateCommentId] = useState(content_id);
+    const postId = content_id;
+    useQuery(["comments", content_id, rerender], async()=>{
+        const response = await showComments(content_id, commentType);
+        setComments(response);
+        return response;
+    }, {
+        cacheTime : 1000*60*10
+    })
+    
     return(
-        <div className="w-full h-full">
-            <CreateComment content_id={content_id} type={type} rerender={rerender} setrender={setrender}/>
+        <MyContext.Provider value={{comment, setComment, rerender, setrender, commentType, setCommentType, createCommentId, setCreateCommentId, postId}}>
+            <div className="w-full h-full">
             <div>
                 {comments && comments.map((element, index)=>{
                     return(
@@ -26,7 +32,9 @@ function Comment({content_id, type}){
                     )
                 })}
             </div>
+            <CreateComment />
         </div>
+        </MyContext.Provider>
     )
 }
 export default Comment;

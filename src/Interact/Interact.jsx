@@ -6,31 +6,33 @@ import { fetchCurrentUser, getToken } from "../Helpers/storeToken";
 import { isPostLiked } from "../Services/isPostLiked";
 import { createPostLike } from "../Services/createPostLike";
 import Comment from "../Comment/comment";
+import { MyContext } from "../context";
+import { useQuery } from "react-query";
 function Interact({post_id}){
     const [countLike, setcountLike] = useState(0);
     const [liked, setLiked] = useState(false);
     const [showComments, setShowComments] = useState(false);
-    useEffect(()=>{
-        async function countLikeOnPostHelper(token){
-            console.log(post_id);
-            const likeCount = await fetchLikeOnPost(token, post_id);
-            console.log(likeCount);
-            setcountLike(likeCount);
+    const {data : like} = useQuery(["liked", post_id], 
+        () => isPostLiked(post_id),
+        {
+            cacheTime : 1000*60*30,
+            staleTime : 1000*60*30
         }
-        const currentUser = fetchCurrentUser();
-        const token = getToken(currentUser);
-        console.log(token);
-        countLikeOnPostHelper(token);
-    },[])
-    useEffect(()=>{
-        async function isLikedPostHelper(token){
-            const isLiked = await isPostLiked(token, post_id);
-            setLiked(isLiked);
+    )
+    const {data : countlike} = useQuery(["countlikes", post_id], 
+        () => fetchLikeOnPost(post_id),
+        {
+            cacheTime : 1000*60*30,
+            staleTime : 1000*60*30
         }
-        const currentUser = fetchCurrentUser();
-        const token = getToken(currentUser);
-        isLikedPostHelper(token);
-    })
+    )
+    useEffect(()=>{
+        setLiked(like);
+    }, [like])
+    useEffect(()=>{
+        setcountLike(countlike);
+        console.log(countlike);
+    },[countlike]);
     function handlePostLike(){
         const currentUser = fetchCurrentUser();
         const token = getToken(currentUser);
@@ -39,19 +41,21 @@ function Interact({post_id}){
         createPostLike(token, post_id);
     }
     return(
-        <div className="flex w-full">
-            <div className="flex ">
-                {liked?
-                <HeartIcon className="w-8 h-8"/>
-                :
-                <HeartIcon className="w-8 h-8 cursor-pointer" style={{ fill: "none", stroke: "currentColor" }} onClick={handlePostLike}/>}
-                <p className="text-xl text-gray-600 ml-2 mr-2">{countLike}</p>
+        <MyContext.Provider>
+            <div className="flex w-full mb-5">
+                <div className="flex ">
+                    {liked?
+                    <HeartIcon className="w-8 h-8"/>
+                    :
+                    <HeartIcon className="w-8 h-8 cursor-pointer" style={{ fill: "none", stroke: "currentColor" }} onClick={handlePostLike}/>}
+                    <p className="text-xl text-gray-600 ml-2 mr-2">{countLike}</p>
+                </div>
+                <div>
+                    <ChatBubbleLeftIcon className="w-8 h-8 cursor-pointer" style={{ fill: "none", stroke: "currentColor" }} onClick={()=>{setShowComments(!showComments)}}/>
+                        {showComments ? <Comment content_id={post_id}/> : null}
+                </div>
             </div>
-            <div>
-                <ChatBubbleLeftIcon className="w-8 h-8 cursor-pointer" style={{ fill: "none", stroke: "currentColor" }} onClick={()=>{setShowComments(!showComments)}}/>
-                    {showComments ? <Comment content_id={post_id} type={"post"}/> : null}
-            </div>
-        </div>
+        </MyContext.Provider>
     )
 }
 export default Interact;

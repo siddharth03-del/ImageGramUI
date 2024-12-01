@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 export function DefaultGallery({data}) {
+  const navigate = useNavigate();
+  const location = useLocation();
     // const data = [
     //   {
     //     imageLink:
@@ -41,7 +45,7 @@ export function DefaultGallery({data}) {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         { data && data.map(( element , index) => (
-          <div key={index}>
+          <div key={index} onClick={()=>{navigate(`/homepage/post/${element._id}`, {state : {backgroundLocation : location}})}}>
             <img
               className="h-40 w-full max-w-full rounded-lg object-cover object-center"
               src={element.image}

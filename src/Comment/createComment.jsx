@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { createComment } from "../Services/createComment";
-function CreateComment({content_id, type, rerender, setrender}){
-    const [comment, setComment] = useState('');
+import { MyContext } from "../context";
+import { useContext } from "react";
+function CreateComment(){
+    const {comment, setComment,  commentType, setCommentType, rerender, setrender, createCommentId, setCreateCommentId, postId} = useContext(MyContext);
     async function handlePost(){
-        await createComment({content_id, type, text : comment});
+        console.log(comment);
+        console.log(commentType);
+        console.log(createCommentId);
+        await createComment({createCommentId, commentType, text : comment});
+        setCommentType("post");
         setrender(!rerender);
         setComment('');
+        setCreateCommentId(postId);
     }
     return(
         <div className="flex mt-2 mb-2">

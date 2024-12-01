@@ -1,5 +1,6 @@
 import axios from "axios";
+import { localUrl, renderUrl } from "./storeUrl";
 const axios_instance = axios.create({
-    baseURL : 'https://imagegram03.onrender.com/api/v1'
+    baseURL : renderUrl
 })
 export default axios_instance;
