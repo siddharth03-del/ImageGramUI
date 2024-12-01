@@ -16,7 +16,7 @@ function PostExpand(){
     const [open, setOpen] = useState(true);
     const [post, setPost] = useState(null);
     const [countLike, setcountLike] = useState(0);
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(0);
     const navigate = useNavigate();
     useEffect(()=>{
         async function fetchPostHelper(postId){
@@ -41,6 +41,7 @@ function PostExpand(){
         }
     )
     useEffect(()=>{
+        console.log(like);
         setLiked(like);
     }, [like])
     useEffect(()=>{

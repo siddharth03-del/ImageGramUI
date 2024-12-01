@@ -11,35 +11,21 @@ const SignInForm = () => {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [verified, setverified] = useState(false);
-  // useEffect(()=>{
-  //   async function verifyTokenHelper(){
-  //     const response = await verifyToken();
-  //     console.log(response);
-  //     if(response.valid){
-  //       setverified(true);
-  //       navigate('/homepage/posts');
-  //     }
-  //     else{
-  //       setverified(false);
-  //     }
-  //   }
-  //   verifyTokenHelper();
-  // })
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(`Email: ${email}, Password: ${password}`);
     setLoading(true);
     const token = await userSingIn(email, password);
-    if(!token){
-      alert('Invalid credentials');
-      setLoading(false);
-    }else{
+    if(token){
       storeToken(email, token);
       setCurrentUser(email);
       setEmail('');
       setPassword('');
       setLoading(false);
       navigate('/homepage/posts');
+    }
+    else{
+      setLoading(false);
     }
   };
   return (

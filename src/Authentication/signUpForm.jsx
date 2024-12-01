@@ -11,10 +11,12 @@ const SignUpForm = () => {
     console.log(`Email: ${email}, Password: ${password}, Username : ${username}`);
     const user = await userSingUp(username, email, password);
     console.log(user);
-    setEmail('');
-    setPassword('');
-    setUsername('');
-    navigate('/');
+    if(user){
+      setEmail('');
+      setPassword('');
+      setUsername('');
+      navigate('/');
+    }
 
   };
   return (

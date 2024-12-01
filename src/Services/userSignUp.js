@@ -8,6 +8,9 @@ export async function userSingUp(username, email, password){
         return response.data;
     }catch(error){
         console.error(error);
+        if(error.response.status == 400){
+            alert(error.response.data.message);
+        }
         return null;
     }
 }
