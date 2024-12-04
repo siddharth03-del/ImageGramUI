@@ -9,15 +9,15 @@ function Routing(){
     return(
     <div className="">
       <Routes>
-        <Route path="/" element={<NavigationBar/>}>
-          <Route index element={
+          <Route path="/" element={
                 <Welcome/>
             }/>
           <Route path="/signup" element={<SignUpForm/>}/>
-          <Route path="/homepage/*" element={<Homepage/>} />
+          <Route path="/homepage" element={<NavigationBar/>}>
+            <Route path="/homepage/*" element={<Homepage/>}/>
+          </Route>
           <Route path="/signin" element={<SignInForm/>}/>
-        </Route>
-    </Routes>
+     </Routes>
     </div>
     )
 }

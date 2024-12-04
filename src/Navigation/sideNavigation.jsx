@@ -22,6 +22,7 @@ import { useContext, useState } from "react";
 import {MyContext} from '../context.js'
 import LogoutDialog from "../Logout/logout.jsx";
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/16/solid";
+import HomeIcon from "../assets/HomeIcon.jsx";
   export function DefaultSidebar() {
     const navigate = useNavigate();
     const [openLogout, setLogout] = useState(false);
@@ -36,9 +37,9 @@ import { MagnifyingGlassCircleIcon } from "@heroicons/react/16/solid";
         <List>
           <ListItem onClick={()=>{navigate("/homepage/posts")}}>
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <HomeIcon/>
             </ListItemPrefix>
-            Posts
+            Home
           </ListItem>
           <ListItem onClick={()=>{navigate("/homepage/explore")}}>
             <ListItemPrefix>
@@ -68,7 +69,7 @@ import { MagnifyingGlassCircleIcon } from "@heroicons/react/16/solid";
             </ListItemPrefix>
             Profile
           </ListItem>
-          <ListItem>
+          <ListItem onClick={()=>{navigate("/homepage/settings")}}>
             <ListItemPrefix>
               <Cog6ToothIcon className="h-5 w-5" />
             </ListItemPrefix>

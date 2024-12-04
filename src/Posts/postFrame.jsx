@@ -1,24 +1,28 @@
 import { UserCircleIcon } from "@heroicons/react/16/solid";
+import { useNavigate } from "react-router-dom";
 export function PostFrame({img, caption, username, profileImage}){
+    const navigate = useNavigate();
     return(
         <div className="w-full h-full flex flex-col mb-2">
             <div className="flex flex-row align-middle mb-1">
-                <div>
-                {
-                    profileImage ?
-                    <div className="flex items-center justify-center">
-                    <img
-                      src={profileImage}
-                      alt="Profile"
-                      className={`rounded-full w-${10} h-${10} object-cover border-2 border-gray-300`}
-                    />
-                  </div>
-                    :
-                    <UserCircleIcon className="w-10 h-10"/>
-                }
-                </div>
-                <div className="flex flex-col justify-center">
-                    <h1 className="font-bold ml-2">{username}</h1>
+                <div className="flex flex-row align-middle w-fit hover:cursor-pointer" onClick={()=>{navigate(`/homepage/explore/${username}`)}}>
+                    <div>
+                    {
+                        profileImage ?
+                        <div className="flex items-center justify-center">
+                        <img
+                        src={profileImage}
+                        alt="Profile"
+                        className={`rounded-full w-${10} h-${10} object-cover border-2 border-gray-300`}
+                        />
+                    </div>
+                        :
+                        <UserCircleIcon className="w-10 h-10"/>
+                    }
+                    </div>
+                    <div className="flex flex-col justify-center">
+                        <h1 className="font-bold ml-2">{username}</h1>
+                    </div>
                 </div>
             </div>
             <div className="relative w-96 h-96 overflow-hidden">

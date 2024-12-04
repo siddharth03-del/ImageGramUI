@@ -6,27 +6,14 @@ import { useContext } from "react";
 import { HeartIcon } from "@heroicons/react/16/solid";
 import { isCommentLiked } from "../Services/isCommentLiked";
 import { createCommentLike } from "../Services/createCommentLike";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 function CommentStructure({comment_id}){
+    const navigate = useNavigate();
     const [showMore, setShowMore] = useState(false);
     const [comments, setComments] = useState(null);
     const {setCommentType, setComment, setCreateCommentId, rerender, setrender} = useContext(MyContext);
     const [liked, setLiked] = useState(false);
-    // useEffect(()=>{
-    //     async function fetchCommentHelper(){
-    //         const temp = await fetchComment(comment_id);
-    //         console.log(temp);
-    //         setComments(temp);
-    //     }
-    //     fetchCommentHelper();
-    // },[rerender]);
-    // useEffect(()=>{
-    //     async function getCommentLikeHelper(){
-    //         const response = await isCommentLiked(comment_id);
-    //         setLiked(response);
-    //     }
-    //     getCommentLikeHelper();
-    // },[rerender]);
     useQuery(["showcomment", comment_id, rerender], async()=>{
         const temp = await fetchComment(comment_id);
         console.log(temp);
@@ -54,8 +41,8 @@ function CommentStructure({comment_id}){
     return(
         <div>
             {comments ? <div className="w-full h-fit">
-            <div>
-                <h1 className="font-bold">{comments.user.username}</h1>
+            <div className="">
+                <h1 className="font-bold hover:cursor-pointer w-fit" onClick={()=>{navigate(`/homepage/explore/${comments.user.username}`)}}>{comments.user.username}</h1>
             </div>
             <div className="flex flex-row w-64 justify-between">
                 <h1 className="ml-2">{comments.text}</h1>

@@ -7,6 +7,7 @@ import Explorer from "../Explore/explore";
 import ExploreProfile from "../Profile/exploreProfile";
 import PostExpand from "../Posts/postExpand";
 import { useLocation } from "react-router-dom";
+import Settings from "../Settings/settings";
 function Homepage(){
     const location = useLocation();
     const state = location.state;
@@ -20,6 +21,7 @@ function Homepage(){
                     <Route path="/explore" element={<Explorer/>}/>
                     <Route path="/explore/:username" element={<ExploreProfile/>} />
                     <Route path="/post/:postId" element={<PostExpand/>} />
+                    <Route path="/settings" element={<Settings/>} />
                 </Route>
             </Routes>
             {
