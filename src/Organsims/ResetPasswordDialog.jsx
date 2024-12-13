@@ -8,7 +8,6 @@ import {
 } from "@material-tailwind/react";
 import ForgotPasswordContext from "../Context/fogotPasswordcontext";
 import { Input , Typography} from "@mui/material";
-import { useToast } from "../hooks/use-toast";
 import { ChangePasswordRequest } from "../Services/changePassword";
 import { useNavigate } from "react-router-dom";
 export function ResetPasswordDialog() {
