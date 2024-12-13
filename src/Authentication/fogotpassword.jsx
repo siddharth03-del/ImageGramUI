@@ -1,5 +1,5 @@
 import { InputOTPControlled } from "../Molecules/InputOtp";
-import {Button} from "@/Components/ui/Button";
+import {Button} from "@/Components/ui/button";
 import { useContext,  useState } from "react";
 import { sendOTPRequest, verifyOTPRequest } from "../Services/otpservice";
 import {useToast} from '../hooks/use-toast';
