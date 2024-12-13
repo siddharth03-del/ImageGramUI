@@ -6,7 +6,7 @@ import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp"
+} from "@/Components/ui/input-otp"
 
 export function InputOTPControlled({value, setValue}) {
 
