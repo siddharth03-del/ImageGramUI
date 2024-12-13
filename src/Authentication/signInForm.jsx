@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { userSingIn } from '../Services/userSignIn';
 import { storeToken } from '../Helpers/storeToken';
 import { useNavigate } from 'react-router-dom';
 import { setCurrentUser } from '../Helpers/storeToken';
 import { Spinner } from '@material-tailwind/react';
-import { verifyToken } from '../Services/verifyToken';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-  const [verified, setverified] = useState(false);
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(`Email: ${email}, Password: ${password}`);
@@ -28,6 +26,22 @@ const SignInForm = () => {
       setLoading(false);
     }
   };
+  // const mutation = useMutation({
+  //   mutationFn : (data)=>{
+  //     return userSingIn(data.email, data.password)
+  //   },
+  //   retry : 3
+  // })
+  // useEffect(()=>{
+  //   if(mutation.data){
+  //     storeToken(email, mutation.data);
+  //     setCurrentUser(email);
+  //     setEmail(' ');
+  //     setPassword(' ');
+  //     setLoading(false);
+  //     navigate('/homepage/posts');
+  //   }
+  // },[mutation.data])
   return (
     <>
     {!isLoading && <div className='w-full h-full flex flex-col justify-around mt-10'>
@@ -62,8 +76,9 @@ const SignInForm = () => {
         </label>
       <button type="submit" className='btn mt-10'>Sign In</button>
       </form>
-      <div className='mt-3'>
+      <div className='mt-3 flex flex-row justify-between'>
         <h1 className=''>Don&#39;t have an account? <a className='link link-info' onClick={()=>{navigate('/signup')}}>Sign Up</a></h1>
+        <h1 className='link link-info ' onClick={()=>{navigate('/forgotpassword')}}>Forgot Password?</h1>
       </div>
       </div>
     </div>}

@@ -2,20 +2,28 @@ import { Spinner } from "@material-tailwind/react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { verifyToken } from "./Services/verifyToken";
+import { useQuery } from "react-query";
 function Welcome(){
     const navigate = useNavigate();
+
+    const {data} = useQuery(["verifyTokenquery"],
+         ()=>verifyToken(),
+        
+        {
+            retry : 10
+        });
+
     useEffect(()=>{
-        async function Helper(){
-            const response = await verifyToken();
-            if(response.valid){
+        if(data){
+            if(data.valid){
                 navigate("/homepage/posts");
             }
             else{
                 navigate("/signin");
             }
         }
-        Helper();
-    })
+    },[data]);
+
     return(
         <div className="w-full h-full flex justify-center align-middle">
             <div className="flex flex-col mt-20">

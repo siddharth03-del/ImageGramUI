@@ -30,8 +30,8 @@ import HomeIcon from "../assets/HomeIcon.jsx";
       <>
       <Card className="h-[calc(100vh-6rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
         <div className="mb-2 p-4">
-          <Typography variant="h5" color="blue-gray">
-            Sidebar
+          <Typography variant="h5" color="purple">
+            Imagegram
           </Typography>
         </div>
         <List>

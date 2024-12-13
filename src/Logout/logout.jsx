@@ -21,7 +21,7 @@ export function LogoutDialog() {
     queryClient.resetQueries();
     const currentUser = fetchCurrentUser();
     removeToken(currentUser);
-    navigate("/");
+    navigate("/signin");
     setLogout(!openLogout);
   }
   return (

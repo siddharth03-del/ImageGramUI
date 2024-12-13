@@ -37,17 +37,17 @@ function ExploreProfile(){
                 <div className="flex flex-col justify-center">
                     <div className="flex flex-row ml-10">
                         <div className="flex flex-col justify-center">
-                            <h1 className="font-bold text-xl font-mono" >{profile.user.username}</h1>
+                            <h1 className="font-bold text-xl font-mono" >{profile.user && profile.user.username}</h1>
                         </div>
                     </div>
                     <div>
-                        <UserDetail followers={profile.followers} following={profile.following} posts={profile.posts}  bio={profile.bio} name={profile.name}/>
+                        <UserDetail followers={profile && profile.followers} following={profile && profile.following} posts={profile.posts}  bio={profile.bio} name={profile.name}/>
                     </div>
                 </div>
             </div>
             <div className="mt-10">
                 <div>
-                    <DefaultGallery data={profile.allposts}/>
+                    <DefaultGallery data={profile && profile.allposts}/>
                 </div>
             </div>
         </div>}

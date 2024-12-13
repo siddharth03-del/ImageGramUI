@@ -9,6 +9,5 @@ export async function verifyToken(){
         return response.data;
     }catch(error){
         console.log(error);
-        return {valid : false};
     }
 }
