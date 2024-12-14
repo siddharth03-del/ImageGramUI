@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import { userSingUp } from '../Services/userSignUp';
 import { useNavigate } from 'react-router-dom';
+import { Loader } from 'lucide-react';
 const SignUpForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(`Email: ${email}, Password: ${password}, Username : ${username}`);
+    if(email === '' || password === '' || username === ''){
+      alert('Please fill all the fields');
+      return;
+    }
+    setLoading(true);
     const user = await userSingUp(username, email, password);
     console.log(user);
     if(user){
@@ -16,6 +23,7 @@ const SignUpForm = () => {
       setPassword('');
       setUsername('');
       navigate('/');
+      setLoading(false);
     }
 
   };
@@ -67,6 +75,11 @@ const SignUpForm = () => {
           Already have an account? <a href='/' className='link link-info'>Sign In</a>
         </h1>
       </div>
+      </div>
+      <div className='flex flex-row justify-center'>
+        {
+          loading &&  <Loader className='w-10 h-10'/>
+        }
       </div>
     </div>
   );
