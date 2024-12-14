@@ -6,23 +6,26 @@ import { useQuery } from "react-query";
 function Welcome(){
     const navigate = useNavigate();
 
-    const {data} = useQuery(["verifyTokenquery"],
-         ()=>verifyToken(),
+    // const {data} = useQuery(["verifyTokenquery"],
+    //      ()=>verifyToken(),
         
-        {
-            retry : 10
-        });
+    //     {
+    //         retry : 10
+    //     });
 
+    // useEffect(()=>{
+    //     if(data){
+    //         if(data.valid){
+    //             navigate("/homepage/posts");
+    //         }
+    //         else{
+    //             navigate("/signin");
+    //         }
+    //     }
+    // },[data]);
     useEffect(()=>{
-        if(data){
-            if(data.valid){
-                navigate("/homepage/posts");
-            }
-            else{
-                navigate("/signin");
-            }
-        }
-    },[data]);
+        navigate('/signin');
+    })
 
     return(
         <div className="w-full h-full flex justify-center align-middle">
