@@ -26,22 +26,7 @@ const SignInForm = () => {
       setLoading(false);
     }
   };
-  // const mutation = useMutation({
-  //   mutationFn : (data)=>{
-  //     return userSingIn(data.email, data.password)
-  //   },
-  //   retry : 3
-  // })
-  // useEffect(()=>{
-  //   if(mutation.data){
-  //     storeToken(email, mutation.data);
-  //     setCurrentUser(email);
-  //     setEmail(' ');
-  //     setPassword(' ');
-  //     setLoading(false);
-  //     navigate('/homepage/posts');
-  //   }
-  // },[mutation.data])
+  
   return (
     <>
     {!isLoading && <div className='w-full h-full flex flex-col justify-around mt-10'>

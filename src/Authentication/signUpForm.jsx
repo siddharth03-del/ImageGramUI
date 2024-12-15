@@ -29,7 +29,7 @@ const SignUpForm = () => {
       setEmail('');
       setPassword('');
       setUsername('');
-      navigate('/');
+      navigate('/signin');
       setLoading(false);
     }
   };
@@ -78,7 +78,7 @@ const SignUpForm = () => {
       </form>
       <div className='mt-2'>
         <h1 className=''>
-          Already have an account? <a href='/' className='link link-info'>Sign In</a>
+          Already have an account? <a className='link link-info' onClick={()=>{navigate('/signin')}}>Sign In</a>
         </h1>
       </div>
       </div>
