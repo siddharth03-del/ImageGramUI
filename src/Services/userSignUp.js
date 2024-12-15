@@ -11,6 +11,6 @@ export async function userSingUp(username, email, password){
         if(error.response.status == 400){
             alert(error.response.data.message);
         }
-        return null;
+        throw error;
     }
 }

@@ -16,7 +16,14 @@ const SignUpForm = () => {
       return;
     }
     setLoading(true);
-    const user = await userSingUp(username, email, password);
+    let user;
+    try{
+      user = await userSingUp(username, email, password);
+    }catch(error){
+      console.log(error);
+      setLoading(false);
+      return;
+    }
     console.log(user);
     if(user){
       setEmail('');
@@ -25,7 +32,6 @@ const SignUpForm = () => {
       navigate('/');
       setLoading(false);
     }
-
   };
   return (
     <div className='w-full h-full flex flex-col justify-around mt-10'>
@@ -78,7 +84,10 @@ const SignUpForm = () => {
       </div>
       <div className='flex flex-row justify-center'>
         {
-          loading &&  <Loader className='w-10 h-10'/>
+          loading &&  <>
+          Please wait...
+          <Loader className='w-10 h-10'/>
+          </>
         }
       </div>
     </div>
