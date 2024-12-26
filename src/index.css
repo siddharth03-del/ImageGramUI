@@ -3,6 +3,7 @@
 @tailwind utilities;
 @layer base {
   :root {
+    color-scheme: light;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -61,6 +62,7 @@
     @apply border-border;
   }
   body {
+    color-scheme: light;
     @apply bg-background text-foreground;
   }
 }

@@ -8,6 +8,7 @@ import ExploreProfile from "../Profile/exploreProfile";
 import PostExpand from "../Posts/postExpand";
 import { useLocation } from "react-router-dom";
 import Settings from "../Settings/settings";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 function Homepage(){
     const location = useLocation();
     const state = location.state;
@@ -15,19 +16,19 @@ function Homepage(){
         <div className="w-full h-full flex relative">
             <Routes location={state?.backgroundLocation || location}>
                 <Route path="/" element={<DefaultSidebar/>}>
-                    <Route path="/posts" element={<Posts/>}/>
-                    <Route path="/upload" element={<Upload/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/explore" element={<Explorer/>}/>
-                    <Route path="/explore/:username" element={<ExploreProfile/>} />
-                    <Route path="/post/:postId" element={<PostExpand/>} />
-                    <Route path="/settings" element={<Settings/>} />
+                    <Route path="/posts" element={<ProtectedRoute><Posts/></ProtectedRoute>}/>
+                    <Route path="/upload" element={<ProtectedRoute><Upload/></ProtectedRoute>}/>
+                    <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+                    <Route path="/explore" element={<ProtectedRoute><Explorer/></ProtectedRoute>}/>
+                    <Route path="/explore/:username" element={<ProtectedRoute><ExploreProfile/></ProtectedRoute>} />
+                    <Route path="/post/:postId" element={<ProtectedRoute><PostExpand/></ProtectedRoute>} />
+                    <Route path="/settings" element={<ProtectedRoute><Settings/></ProtectedRoute>} />
                 </Route>
             </Routes>
             {
                 state?.backgroundLocation && (
                     <Routes>
-                        <Route path="/post/:postId" element={<PostExpand/>} />
+                        <Route path="/post/:postId" element={<ProtectedRoute><PostExpand/></ProtectedRoute>} />
                     </Routes>
                 )
             }

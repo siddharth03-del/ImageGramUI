@@ -2,6 +2,10 @@ import axios_instance from "../Helpers/axiosInstance";
 import { fetchCurrentUser, getToken } from "../Helpers/storeToken";
 export async function FetchUsers(prefix){
     try{
+        if(prefix == ''){
+            console.log("empty prefix");
+            return null;
+        }
         const currenUser = fetchCurrentUser();
         const token = getToken(currenUser);
         const headers = {"x-access-token" : token};

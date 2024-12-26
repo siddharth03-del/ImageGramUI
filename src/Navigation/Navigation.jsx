@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 export function NavigationBar(){
+    const navigate = useNavigate();
     return(
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-opacity-100">
             <div className="navbar-start">
                 <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -21,8 +23,8 @@ export function NavigationBar(){
                 </div>
                 <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    <li><a>Homepage</a></li>
+                    className="menu menu-sm dropdown-content bg-opacity-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li onClick={()=>{navigate("/homepage/posts")}}><a>Homepage</a></li>
                     <li><a>Portfolio</a></li>
                     <li><a>About</a></li>
                 </ul>
@@ -32,7 +34,7 @@ export function NavigationBar(){
                 <a className="btn btn-ghost text-xl">ImageGram</a>
             </div>
             <div className="navbar-end">
-                <button className="btn btn-ghost btn-circle">
+                <button className="btn btn-ghost btn-circle" onClick={()=>{navigate("/homepage/explore")}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"

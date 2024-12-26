@@ -9,4 +9,11 @@
   .scrollable-container::-webkit-scrollbar {
     display: none;  /* Chrome, Safari, and Opera */
   }
+
+  .transition-transform { 
+    transition: transform 0.3s ease-in-out; 
+  } /* Custom class for hover effect */ 
+  .hover-scale { 
+    transform: scale(1.1); 
+  }
   

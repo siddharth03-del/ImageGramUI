@@ -6,6 +6,7 @@ import Interact from "../Interact/Interact";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Spinner } from "@material-tailwind/react";
 import { useInfiniteQuery, useQuery } from "react-query";
+import { Skeleton } from "@/Components/ui/skeleton"
 
 export function Posts() {
     const [posts, setPosts] = useState([]);
@@ -59,7 +60,7 @@ export function Posts() {
 
     return (
         <div className="h-[calc(100vh-4rem)] w-full flex-col align-middle" ref={scrollable}>
-            <div className="overflow-y-scroll h-[calc(100vh-4rem)] max-w-fit mx-auto scrollable-container">
+            <div className="overflow-y-scroll h-[calc(100vh-4rem)] w-full mx-auto scrollable-container">
                 <div>
                     {posts && 
                         <InfiniteScroll
@@ -68,7 +69,13 @@ export function Posts() {
                             hasMore={hasMore}
                             loader={
                                 <div className="w-[400px] flex justify-center flex-row">
-                                    <Spinner className="w-10 h-10"/>
+                                    <div className="flex flex-col space-y-3">
+                                    <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+                                    <div className="space-y-2">
+                                        <Skeleton className="h-4 w-[250px]" />
+                                        <Skeleton className="h-4 w-[200px]" />
+                                    </div>
+                                    </div>
                                 </div>
                             }
                             endMessage={
@@ -79,7 +86,7 @@ export function Posts() {
                             height={height}
                         >
                             {posts.map((element) => (
-                                <div key={element._id} className="w-[400px] h-fit">
+                                <div key={element._id} className="w-[400px] h-fit mx-auto">
                                     <PostFrame img={element.image} caption={element.caption} username={element.user.username} profileImage={element.userProfile.image}/>
                                     <Interact post_id={element._id} />
                                 </div>

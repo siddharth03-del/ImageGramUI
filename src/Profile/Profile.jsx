@@ -38,17 +38,34 @@ function Profile(){
         }
         fetchProfileHleper();
     },[profileReRender]);
+    useEffect(()=>{
+        {(Object.keys(profile).length != 0) && !profile.image && window.setTimeout(()=>{
+            if(!imageUpload && !size){
+                setImageUploader(!imageUpload);
+            }
+        }, 8000)}
+    },[profile]);
+    useEffect(()=>{
+        {(Object.keys(profile).length != 0) && !profile.name && !profile.bio && window.setTimeout(()=>{
+            if(!imageUpload){
+                setSize("lg");
+            }
+        }, 3000)}
+    },[profile]);
     return(
         <MyContext.Provider value={{imageLoading, setImageLoading, setProfileReRender, profileReRender, size, setSize}}>
         <div className="w-full h-full">
-            <div className="overflow-y-scroll h-[calc(100vh-4rem)] max-w-fit mx-auto">
+            <div className="overflow-y-scroll h-[calc(100vh-4rem)] w-[calc(w-full - 3rem)] mx-auto ml-10">
                 <div className="flex flex-row align-middle">
-                    <div onClick={()=>{setImageUploader(!imageUpload); console.log("clicked")}}>
+                    <div onClick={()=>{setImageUploader(!imageUpload); console.log("clicked")}} className="hover:cursor-pointer">
                         {
                         profile.image ?
                         <UserImage imageUrl={profile.image} width={32} height={32}/>
                          : 
-                         <UserCircleIcon className="h-32 w-32"/>
+                         <div>
+                            <UserCircleIcon  className="h-32 w-32"/>
+                            <h1 className="font-bold">Upload your image above</h1>
+                         </div>
                          }
                     </div>
                     <div>
@@ -60,7 +77,7 @@ function Profile(){
                                 <h1 className="font-bold text-xl font-mono" >{profile.user && profile.user.username}</h1>
                             </div>
                             <div>
-                                <button className="btn ml-5" onClick={()=>{setSize("lg")}}>Edit profile </button>
+                                <button className="btn ml-5 bg-white" onClick={()=>{setSize("lg")}}>Edit profile </button>
                             </div>
                             {profile && <div>
                                 <UpdateProfileDialog previousBio={profile.bio} previousName={profile.name}/>

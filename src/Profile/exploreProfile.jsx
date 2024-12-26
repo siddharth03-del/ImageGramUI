@@ -24,7 +24,7 @@ function ExploreProfile(){
         <MyContext.Provider value={{imageLoading, setImageLoading, size, setSize}}>
         <div className="w-full h-full">
             {profile && 
-            <div className="overflow-y-scroll h-[calc(100vh-4rem)] max-w-fit mx-auto">
+            <div className="overflow-y-scroll h-[calc(100vh-4rem)] w-[calc(w-full - 3rem)] ml-10 mx-auto">
             <div className="flex flex-row align-middle">
                 <div>
                     {

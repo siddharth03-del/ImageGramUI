@@ -1,3 +1,5 @@
 import combineContext from "../utils/combinContext";
 import { ForgotPasswordContextProvider } from "./fogotPasswordcontext";
-export const AppContextProvider = combineContext(ForgotPasswordContextProvider);
+import { LoginContextProvider } from "./LoginContext";
+import { SignupContextProvider } from "./SignupContext";
+export const AppContextProvider = combineContext(ForgotPasswordContextProvider, LoginContextProvider, SignupContextProvider);

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import '../App.css';
 export function DefaultGallery({data}) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,9 +46,9 @@ export function DefaultGallery({data}) {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         { data && data.map(( element , index) => (
-          <div key={index} onClick={()=>{navigate(`/homepage/post/${element._id}`, {state : {backgroundLocation : location}})}}>
+          <div key={index} className="overflow-hidden relative" onClick={()=>{navigate(`/homepage/post/${element._id}`, {state : {backgroundLocation : location}})}}>
             <img
-              className="h-40 w-full max-w-full rounded-lg object-cover object-center"
+              className="h-40 w-full max-w-full rounded-lg object-cover object-center hover:cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
               src={element.image}
               alt="gallery-photo"
             />

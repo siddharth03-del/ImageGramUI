@@ -51,11 +51,11 @@ export function UpdateProfileDialog({previousBio, previousName}) {
             <div>
                 <div>
                     <label htmlFor="name">Enter your name</label>
-                    <input type="text" value={name} className="input input-bordered w-full" onChange={(e)=>{setName(e.target.value)}}/>
+                    <input type="text" value={name} className="input input-bordered w-full bg-white" onChange={(e)=>{setName(e.target.value)}}/>
                 </div>
                 <div>
                     <label htmlFor="bio">Enter your bio</label>
-                    <input type="text" value={bio} className="input input-bordered w-full" onChange={(e)=>{setBio(e.target.value)}}/>
+                    <input type="text" value={bio} className="input input-bordered w-full bg-white" onChange={(e)=>{setBio(e.target.value)}}/>
                 </div>
             </div>
         </DialogBody>

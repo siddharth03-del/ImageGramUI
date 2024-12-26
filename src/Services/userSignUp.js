@@ -1,5 +1,5 @@
 import axios_instance from "../Helpers/axiosInstance";
-export async function userSingUp(username, email, password){
+export async function userSignUp(username, email, password){
     try{
         const body = {username, email ,password};
         console.log(body);
@@ -8,9 +8,9 @@ export async function userSingUp(username, email, password){
         return response.data;
     }catch(error){
         console.error(error);
-        if(error.response.status == 400){
-            alert(error.response.data.message);
-        }
+        // if(error.response.status == 400){
+        //     alert(error.response.data.message);
+        // }
         throw error;
     }
 }
