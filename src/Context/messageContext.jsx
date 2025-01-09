@@ -4,7 +4,7 @@ const MessageContext = createContext(null);
 import { io } from "socket.io-client";
 import { renderUrl } from "../Helpers/storeUrl";
 export const MessageContextProvider = ({children})=>{
-    const socket = io(renderUrl);
+    const socket = io("https://imagegram03.onrender.com");
     const [openSearchDialog, setOpenSearchDialog] = useState(false);
     const [ chatList, setChatList ] = useState([]);
     const [currentUser, setCurrentUser] = useState('');
