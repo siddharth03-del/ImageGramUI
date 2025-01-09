@@ -68,7 +68,7 @@ export function Posts() {
                             next={()=>fetchNextPage()}
                             hasMore={hasMore}
                             loader={
-                                <div className="w-[400px] flex justify-center flex-row">
+                                <div className="w-[400px] flex justify-center flex-row mx-auto">
                                     <div className="flex flex-col space-y-3">
                                     <Skeleton className="h-[125px] w-[250px] rounded-xl" />
                                     <div className="space-y-2">

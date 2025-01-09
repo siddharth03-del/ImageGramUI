@@ -28,9 +28,9 @@ import HomeIcon from "../assets/HomeIcon.jsx";
     const [openLogout, setLogout] = useState(false);
     return (
       <>
-      <Card className="h-[calc(100vh-6rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+      <Card className="h-[calc(100vh-6rem)] w-full max-w-[16rem] p-4 shadow-xl shadow-blue-gray-900/5">
         <div className="mb-2 p-4">
-          <Typography variant="h5" color="purple">
+          <Typography variant="h5" color="purple" className="italic">
             Imagegram
           </Typography>
         </div>
@@ -48,13 +48,13 @@ import HomeIcon from "../assets/HomeIcon.jsx";
             </ListItemPrefix>
             Search
           </ListItem>
-          <ListItem>
+          <ListItem onClick={()=>{navigate("/homepage/message")}}>
             <ListItemPrefix>
               <InboxIcon className="h-5 w-5" />
             </ListItemPrefix>
             Inbox
             <ListItemSuffix>
-              <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
+              <Chip value="0" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
             </ListItemSuffix>
           </ListItem>
           <ListItem onClick={()=>{navigate("/homepage/upload")}}>

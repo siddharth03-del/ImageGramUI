@@ -26,3 +26,17 @@ export async function fetchExploreProfile(username){
         return null;
     }
 }
+
+export async function fetchProfileOfAnotherUser(userId){
+    try{
+        const currentUser= fetchCurrentUser();
+        const token = getToken(currentUser);
+        const headers = {"x-access-token" : token};
+        const params = {userId};
+        const response = await axios_instance.get('/profile/getProfileOfAnotherUser', {params, headers});
+        return response.data.data;
+    }catch(error){
+        console.log(error);
+        return null;
+    }
+}

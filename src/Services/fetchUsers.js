@@ -3,7 +3,6 @@ import { fetchCurrentUser, getToken } from "../Helpers/storeToken";
 export async function FetchUsers(prefix){
     try{
         if(prefix == ''){
-            console.log("empty prefix");
             return null;
         }
         const currenUser = fetchCurrentUser();

@@ -9,6 +9,8 @@ import PostExpand from "../Posts/postExpand";
 import { useLocation } from "react-router-dom";
 import Settings from "../Settings/settings";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+import Message from "../Message/MessageRoute";
+import MessageRoute from "../Message/MessageRoute";
 function Homepage(){
     const location = useLocation();
     const state = location.state;
@@ -23,6 +25,7 @@ function Homepage(){
                     <Route path="/explore/:username" element={<ProtectedRoute><ExploreProfile/></ProtectedRoute>} />
                     <Route path="/post/:postId" element={<ProtectedRoute><PostExpand/></ProtectedRoute>} />
                     <Route path="/settings" element={<ProtectedRoute><Settings/></ProtectedRoute>} />
+                    <Route path="/message/*" element={<ProtectedRoute><MessageRoute/></ProtectedRoute>}/>
                 </Route>
             </Routes>
             {

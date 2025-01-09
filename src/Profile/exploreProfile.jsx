@@ -7,11 +7,13 @@ import UserImage from "./userImage";
 import UserDetail from "./userDetail";
 import { MyContext } from "../context";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function ExploreProfile(){
     const [profile, setProfile] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
     const [size, setSize] = useState(null);
     const {username} = useParams();
+    const navigate = useNavigate();
     useEffect(()=>{
         async function fetchExploreProfileHelper(username){
             const response = await fetchExploreProfile(username);
@@ -38,6 +40,11 @@ function ExploreProfile(){
                     <div className="flex flex-row ml-10">
                         <div className="flex flex-col justify-center">
                             <h1 className="font-bold text-xl font-mono" >{profile.user && profile.user.username}</h1>
+                        </div>
+                        <div>
+                            <button className="btn btn-info ml-2" onClick={()=>{navigate(`/homepage/message/t/${profile.user._id}`)}}>
+                                Message
+                            </button>
                         </div>
                     </div>
                     <div>

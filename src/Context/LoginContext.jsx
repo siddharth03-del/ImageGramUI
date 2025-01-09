@@ -12,6 +12,9 @@ export const LoginContextProvider = ({children})=>{
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log("called");
+        if(loading){
+            return;
+        }
         let token;
         try{
             setError(false);
@@ -19,7 +22,8 @@ export const LoginContextProvider = ({children})=>{
             token = await userSingIn(email, password);
             localStorage.setItem("loggedIn", true);
             setLoading(false);
-            storeToken(email, token);
+            storeToken(email, token.token);
+            localStorage.setItem("userId", token.userId);
             setCurrentUser(email);
             setEmail('');
             setPassword('');

@@ -12,6 +12,9 @@ export const SignupContextProvider = ({children}) => {
     const navigate = useNavigate();
     const handleSubmit = async(e)=>{
         e.preventDefault();
+        if(loading){
+            return;
+        }
         if(password !== confirmPassword){
             setError("Password and confirm password do not match");
             return;
