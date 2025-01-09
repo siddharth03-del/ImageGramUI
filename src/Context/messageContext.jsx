@@ -2,8 +2,9 @@ import { useTabs } from "@material-tailwind/react";
 import { createContext, useState } from "react";
 const MessageContext = createContext(null);
 import { io } from "socket.io-client";
+import { renderUrl } from "../Helpers/storeUrl";
 export const MessageContextProvider = ({children})=>{
-    const socket = io("http://localhost:3005");
+    const socket = io(renderUrl);
     const [openSearchDialog, setOpenSearchDialog] = useState(false);
     const [ chatList, setChatList ] = useState([]);
     const [currentUser, setCurrentUser] = useState('');
