@@ -29,7 +29,9 @@ export const MessageContextProvider = ({children})=>{
     })
     socket.on('NEW_MESSAGE', (data)=>{
         console.log(data, "new message");
-        if(currentUser == data.receiver){
+        console.log(currentUser);
+        console.log(data.receiver);
+        if(currentUser == data.sender){
             setChats((prevChat)=>[...prevChat, data]);
         }
         console.log(chats);
